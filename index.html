@@ -138,12 +138,7 @@
     color: #000;
     border-color: #ff9900;
   }
-  textarea, input {
-    background: #111;
-    color: #fff;
-    border: 1px solid #222;
-    transition: border-color 0.2s;
-  }
+
   textarea:focus, input:focus {
     outline: none;
 
@@ -227,9 +222,9 @@
   <button class="tab-btn" data-tool="reaction">Reaction Time</button>
   <button class="tab-btn" data-tool="pomodoro">Pomodoro Timer</button>
   <button class="tab-btn" data-tool="stopwatch">Stopwatch</button>
-  <button class="tab-btn" data-tool="countdown">Countdown Timer</button>
+  <button class="tab-btn" data-tool="countdown">Timer</button>
   <button class="tab-btn" data-tool="random">Number Generator</button>
-  <button class="tab-btn" data-tool="time">Current Time</button>
+  <button class="tab-btn" data-tool="time">Time</button>
   <button class="tab-btn" data-tool="browser">Browser Info</button>
   
   <div id="footer">Made by Cassius</div>
@@ -320,7 +315,7 @@
 
   <!-- Countdown -->
   <div id="countdown" class="tool">
-    <h2>Countdown Timer</h2>
+    <h2>Timer</h2>
     <div class="countdown-inputs">
       <input type="number" id="countdown-hours" placeholder="Hours" min="0" style="width:60px;">
       <input type="number" id="countdown-minutes" placeholder="Minutes" min="0" max="59" style="width:60px;">
