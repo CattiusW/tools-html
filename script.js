@@ -338,6 +338,69 @@ function updateCalc() {
 calcInput.addEventListener('input', updateCalc);
 updateCalc();
 
+/* Encrypted HTML Page Generator */
+const encHtmlInput = document.getElementById('encrypthtml-input');
+const encHtmlPassword = document.getElementById('encrypthtml-password');
+const encHtmlGenerate = document.getElementById('encrypthtml-generate');
+const encHtmlOutput = document.getElementById('encrypthtml-output');
+encHtmlGenerate.addEventListener('click', function() {
+  const html = encHtmlInput.value;
+  const password = encHtmlPassword.value;
+  if (!html || !password) {
+    encHtmlOutput.value = 'Please provide both HTML code and a password.';
+    return;
+  }
+  const encrypted = CryptoJS.AES.encrypt(html, password).toString();
+  const page = `<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Encrypted HTML Page</title>
+  <link href='https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap' rel='stylesheet'>
+  <style id='encstyle'>
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body { background: #111; color: #fff; font-family: 'Nunito', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .container { background: #181818; border-radius: 16px; padding: 40px 32px 32px 32px; box-shadow: 0 4px 32px rgba(0,0,0,0.22); max-width: 420px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+    h2 { font-size: 2rem; margin-bottom: 22px; font-weight: 700; letter-spacing: 0.02em; }
+    input[type='password'] { width: 100%; padding: 14px 16px; border-radius: 10px; border: 1.5px solid #333; background: #222; color: #fff; font-size: 1.08rem; margin-bottom: 22px; box-sizing: border-box; }
+    input[type='password']:focus { outline: none; border-color: #ff9900; }
+    button { padding: 14px 22px; border-radius: 10px; border: none; background: linear-gradient(90deg, #ff9900 80%, #fffbe6 100%); color: #222; font-weight: 700; font-size: 1.08rem; cursor: pointer; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(255,153,0,0.12); transition: background 0.2s, color 0.2s; }
+    button:hover { background: #ff9900; color: #fff; }
+    .error { color: #ff4444; margin-top: 12px; font-size: 1rem; min-height: 24px; text-align: center; }
+    @media (max-width: 600px) { .container { padding: 18px 8px; max-width: 98vw; } h2 { font-size: 1.2rem; } }
+  </style>
+</head>
+<body>
+  <div class='container' id='enccontainer'>
+    <h2>Enter Password</h2>
+    <input type='password' id='pw' placeholder='Password...'>
+    <button onclick='decrypt()'>Decrypt & Show Page</button>
+    <div id='error' class='error'></div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js'></script>
+  <script id='encscript'>
+    function decrypt() {
+      var pw = document.getElementById('pw').value;
+      var error = document.getElementById('error');
+      try {
+        var decrypted = CryptoJS.AES.decrypt("${encrypted}", pw).toString(CryptoJS.enc.Utf8);
+        if (!decrypted) { error.textContent = 'Wrong password or corrupted data.'; return; }
+        // Remove all styles and scripts added by this page
+        document.head.querySelectorAll('#encstyle, link[rel="stylesheet"]').forEach(e => e.remove());
+        document.body.querySelectorAll('#enccontainer').forEach(e => e.remove());
+        document.querySelectorAll('#encscript').forEach(e => e.remove());
+        document.body.innerHTML = decrypted;
+      } catch(e) {
+        error.textContent = 'Decryption failed.';
+      }
+    }
+  </script>
+</body>
+</html>`;
+  encHtmlOutput.value = page;
+});
+
 /* Reset All Tools */
 function resetAllTools(){ resetReaction(); resetPomodoro(); resetStopwatch(); resetCountdown(); }
 

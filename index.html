@@ -31,6 +31,7 @@
     <button class="tab-btn" data-tool="aboutblank">about:blank Embedder</button>
     <button class="tab-btn" data-tool="music">Study Music Player</button>
     <button class="tab-btn" data-tool="calculator">Calculator</button>
+    <button class="tab-btn" data-tool="encrypthtml">Encrypted HTML Page Generator</button>
   </div>
   <div id="footer">Made by Cassius</div>
 </div>
@@ -194,9 +195,33 @@
   </div>
 </div>
 
+<!-- Encrypted HTML Page Generator -->
+<div id="encrypthtml" class="tool">
+  <h2>Encrypted HTML Page Generator</h2>
+  <div class="encrypthtml-card">
+    <div class="base64-container">
+      <div>
+        <h3>HTML Code</h3>
+        <textarea id="encrypthtml-input" placeholder="Paste your HTML code..."></textarea>
+      </div>
+      <div>
+        <h3>Password</h3>
+        <input type="text" id="encrypthtml-password" placeholder="Enter password..." />
+      </div>
+    </div>
+    <div class="base64-controls">
+      <button id="encrypthtml-generate">Generate Encrypted HTML Page</button>
+    </div>
+    <div class="base64-controls">
+      <textarea id="encrypthtml-output" placeholder="Copy-paste HTML page will appear here..." readonly style="height:180px;"></textarea>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </body>
 </html>
