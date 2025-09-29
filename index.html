@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tools</title>
+  
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -12,7 +13,40 @@
 <div class="burger-menu" id="burger-menu" aria-label="Open menu" tabindex="0">
   <i class="fas fa-bars"></i>
 </div>
+<script>
+  NekoType="socks";
+  document.addEventListener('keydown', function(event) {
+    // Check if the Ctrl key is being pressed and the 'E' key is pressed.
+    // event.ctrlKey is cross-browser for the control key on PC and Mac.
+    // event.key is the modern way to get the pressed key's character.
+    if (event.ctrlKey && event.key === 'e') {
+      // Prevent the browser's default action for Ctrl+E (e.g., opening search).
+      event.preventDefault();
+  
+      // Call the cat herding function.
+      catHerding();
+    }
+  });
 
+
+function anotherNeko(bActive) {
+	
+	x = Math.floor(Math.random() * box.boundWidth());
+	y = Math.floor(Math.random() * box.boundHeight());
+	scat = new Neko(x,y, bActive);
+	
+}
+function catHerding()
+{
+	for(var i = 0; i < 10; i++)
+	{
+		anotherNeko(true);
+	}
+}
+
+
+</script>
+<h1 id=nl><script src="https://webneko.net/n20171213.js"></script></h1>
 <div id="sidebar">
   <h2>Tools</h2>
   <input type="search" placeholder="Search tools..." id="tool-search" />
@@ -33,7 +67,7 @@
     <button class="tab-btn" data-tool="calculator">Calculator</button>
     <button class="tab-btn" data-tool="encrypthtml">Encrypted HTML Page Generator</button>
   </div>
-  <div id="footer">Made by Cassius</div>
+  <div id="footer">Made by Cassius<br> The cat is from webneko.net</div>
 </div>
 
 <div id="main">
