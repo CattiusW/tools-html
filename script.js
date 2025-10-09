@@ -3,6 +3,7 @@ const tabs = document.querySelectorAll('.tab-btn');
 const tools = document.querySelectorAll('.tool');
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
+    umami.track(`Viewed Tool: ${tab.dataset.tool}`);
     resetAllTools();
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
