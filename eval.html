@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+    <!-- Text area for code input -->
+    <textarea id="codeInput" rows="10" cols="50" placeholder="Enter your JavaScript code here..."></textarea>
+    <br>
+
+    <!-- Button to trigger execution -->
+    <button onclick="runCode()">Run Code</button>
+
+    <h3>Output:</h3>
+    <!-- Area to display results or errors -->
+    <pre id="output">Results will appear here...</pre>
+
+    <script>
+        function runCode() {
+            // Get the code from the text area
+            const code = document.getElementById('codeInput').value;
+            const outputElement = document.getElementById('output');
+
+            try {
+                // Clear previous output
+                outputElement.textContent = 'Running...';
+
+                // Evaluate the code using the 'eval()' function
+                // WARNING: 'eval()' can be dangerous in real applications
+                const result = eval(code);
+
+                // Display the result
+                outputElement.textContent = 'Result: ' + result + '\n\nConsole output might be in your browser DevTools Console (F12).';
+            } catch (error) {
+                // Display any errors that occur during execution
+                outputElement.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+
+</body>
+</html>
